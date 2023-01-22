@@ -1,0 +1,34 @@
+class Solution {
+    public static double[] averageValueOfNodesAtEachLevelInABinaryTree(Node root) {
+      Queue<Node> q=new LinkedList<>();
+	   	q.add(root);
+		  ArrayList<ArrayList<Integer>> arr=new ArrayList<ArrayList<Integer>>();
+	   	while(q.size()>0)
+		  {
+		   	int size=q.size();
+		  	ArrayList<Integer> level=new ArrayList<>();
+			  for(int i=0;i<size;i++){
+				Node rn=q.remove();
+				level.add(rn.data);
+				if(rn.left!=null) q.add(rn.left);
+				if(rn.right!=null) q.add(rn.right);
+			}
+			  arr.add(level);
+		 }
+		int sizeAr=arr.size();
+		double[] ans=new double[sizeAr];
+		for(int i=0;i<arr.size();i++)
+		{
+			double sum=0;
+			double c=0;
+			for(int j=0;j<arr.get(i).size();j++)
+			{
+				sum+=arr.get(i).get(j);
+				c++;
+			}
+			double fr=sum/c;
+			ans[i]=fr;
+		}
+		return ans;
+    }
+}
