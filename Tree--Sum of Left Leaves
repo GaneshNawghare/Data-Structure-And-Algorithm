@@ -1,0 +1,12 @@
+class Solution {
+	int sum;
+    int SumLeftLeaves(TreeNode root) {
+       if(root==null)
+		   return 0;
+		 if (root.left != null && root.left.left == null && root.left.right == null)
+			sum=sum+root.left.data;
+		SumLeftLeaves(root.left);
+		SumLeftLeaves(root.right);
+		return sum;
+    }
+}
