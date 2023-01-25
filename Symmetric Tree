@@ -1,0 +1,14 @@
+class Solution {
+    public boolean isSymmetrich(TreeNode root1,TreeNode root2){
+        if(root1==null && root2==null)
+        return true;
+        if(root1==null || root2==null)
+        return false;
+        boolean ch=isSymmetrich(root1.left,root2.right);
+        boolean ch1=isSymmetrich(root1.right,root2.left);
+        return ch && ch1 && (root1.val==root2.val);
+    }
+    public boolean isSymmetric(TreeNode root) {
+        return isSymmetrich(root,root);
+    }
+}
