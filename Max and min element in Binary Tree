@@ -1,0 +1,17 @@
+class Solution{
+    
+    public static int findMax(Node root){
+        if(root==null)
+        return Integer.MIN_VALUE;
+        int ln=findMax(root.left);
+        int rn=findMax(root.right);
+        return Math.max(root.data,Math.max(ln,rn));
+    }
+    public static int findMin(Node root){
+        if(root==null)
+        return Integer.MAX_VALUE;
+        int ln=findMin(root.left);
+        int rn=findMin(root.right);
+        return Math.min(root.data,Math.min(ln,rn));
+    }
+}
