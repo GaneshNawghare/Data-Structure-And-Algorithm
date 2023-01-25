@@ -1,0 +1,18 @@
+class Tree
+{
+    static int c=0;
+    public static void preorder(Node root)
+    {
+        if(root==null)
+        return;
+        c++;
+        preorder(root.left);
+        preorder(root.right);
+    }
+	public static int getSize(Node root)
+	{
+	   c=0;
+	   preorder(root);
+	   return c;
+    }
+}
