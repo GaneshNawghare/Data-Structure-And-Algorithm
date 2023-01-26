@@ -1,0 +1,27 @@
+class Solution
+{
+    //Function to fix a given BST where two nodes are swapped.  
+    Node first=null;
+    Node second=null;
+    Node prev=new Node(Integer.MIN_VALUE);
+    public void inorder(Node root)
+    {
+        if(root==null)
+        return;
+        inorder(root.left);
+        if(first==null && prev.data > root.data)
+          first=prev;
+        if(first!=null && prev.data > root.data)
+          second=root;  
+          prev=root;
+        inorder(root.right);
+    }
+    public Node correctBST(Node root)
+    {
+        inorder(root);
+        int temp=first.data;
+        first.data=second.data;
+        second.data=temp;
+        return root;
+    }
+}
