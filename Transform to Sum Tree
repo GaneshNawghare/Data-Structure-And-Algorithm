@@ -1,0 +1,13 @@
+class Solution{
+    public int toSumTreeh(Node root){
+         if(root==null)return 0;
+         int lt=toSumTreeh(root.left);
+         int rt=toSumTreeh(root.right);
+         int totalsum=lt+rt+root.data;
+         root.data=lt+rt;
+         return totalsum;
+    }
+    public void toSumTree(Node root){
+         toSumTreeh(root);
+    }
+}
