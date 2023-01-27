@@ -1,0 +1,19 @@
+class Solution {
+    public int longestNiceSubarray(int[] nums) {
+        int n=nums.length;
+        int num=0;
+        int j=0;
+        int max=0;
+        for(int i=0;i<n;i++)
+        {
+            // i use count for counting the satisfy conditions
+            while((num & nums[i]) != 0){
+                num^=nums[j++];
+            }
+            num|=nums[i];
+            // here i store max value of count
+            max=Math.max(max,i-j+1);
+        }
+        return max;
+    }
+}
