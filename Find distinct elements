@@ -1,0 +1,24 @@
+class Solution{
+    static int distinct(int M[][], int N)
+    {
+       int ans=0,ans1=0;
+		HashMap<Integer,Integer> map=new HashMap<>();
+		for(int i=0;i<N;i++)
+		   map.put(M[0][i],0);
+		   
+    	 HashMap<Integer,Integer> map1=new HashMap<>();
+		int cnt=0;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<N;j++)
+			{
+				 if(map.containsKey(M[i][j]) && map.get(M[i][j])==i) 
+		             map.put(M[i][j],map.get(M[i][j])+1);
+		             
+		         if(i==N-1 && map.containsKey(M[i][j]) && map.get(M[i][j])==N)
+		          map1.put(M[i][j],1);
+			}
+		}
+		return map1.size();
+    }
+}
