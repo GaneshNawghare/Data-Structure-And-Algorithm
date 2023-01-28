@@ -1,0 +1,11 @@
+ static int makeUnique (int[] arr,int n) {
+    HashMap<Integer,Integer> map=new HashMap<>();
+		int cnt=0;
+		for(int i=0;i<n;i++)
+		map.put(arr[i],map.getOrDefault(arr[i],0)+1);
+		int max=0;
+		for(int i=0;i<n;i++){
+			max=Math.max(map.get(arr[i]),max);
+		}
+		return n-max;
+    }
