@@ -1,0 +1,58 @@
+ class Solution {
+    public String SmallestSubstring(String a, String b) {
+        String ans="";
+		HashMap<Character,Integer> map2=new HashMap<>();
+		for(int i=0;i<b.length();i++){
+			char ch=b.charAt(i);
+			map2.put(ch,map2.getOrDefault(ch,0)+1);
+		}
+
+		int mct=0;
+		int dmct=b.length();
+		HashMap<Character,Integer> map1=new HashMap<>();
+		int i=-1;
+		int j=-1;
+		
+		while(true){
+			boolean f1=false;
+			boolean f2=false;
+
+			// Acquire
+			while(i < a.length()-1 && mct < dmct){
+				i++;
+				char ch=a.charAt(i);
+				map1.put(ch,map1.getOrDefault(ch,0)+1);
+
+				if(map1.getOrDefault(ch,0) <= map2.getOrDefault(ch,0)){
+					mct++;
+				}
+				f1=true;
+			}
+			// Collect ans and Release
+			while(j<i && mct==dmct){
+				String pans=a.substring(j+1,i+1);
+				if(ans.length()==0 || pans.length() < ans.length()){
+					ans=pans;
+				}
+				j++;
+				char ch=a.charAt(j);
+				if(map1.get(ch)==1){
+					map1.remove(ch);
+				}else{
+					map1.put(ch,map1.get(ch)-1);
+				}
+				if(map1.getOrDefault(ch,0) < map2.getOrDefault(ch,0)){
+					mct--;
+				}
+				f2=true;
+			}
+
+			if(f1==false && f2==false){
+				break;
+			}
+		}
+		if(ans.length()==0)
+			return "-1";
+		return ans;
+    }
+}
