@@ -1,0 +1,37 @@
+class Solution {
+    public int maxSumSubmatrix(int[][] matrix, int k) {
+        int n=matrix.length;
+		int m=matrix[0].length;
+		int max=Integer.MIN_VALUE;
+		for(int i=0;i<n;i++)
+		{
+			int[] a=new int[m];
+		    for(int j=i;j<n;j++)
+			{
+				for(int l=0;l<m;l++)
+				{
+					a[l]+=matrix[j][l];
+				}
+				int sum=helper(a,k);
+				max=Math.max(sum,max);	
+			}
+		}
+		return max;
+    }
+	public int helper(int[] a,int k){
+		int n=a.length;
+		int sum;
+		int max=Integer.MIN_VALUE;;
+		for(int i=0;i<n;i++)
+		{
+			sum=0;
+			for(int j=i;j<n;j++)
+			{
+				sum+=a[j];
+				if(sum<=k)
+					max=Math.max(sum,max);
+			}
+		}
+		return max;
+	}
+}
