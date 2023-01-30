@@ -1,0 +1,35 @@
+class Solution {
+    public int[] fullBloomFlowers(int[][] flowers, int[] persons) {
+        int n=flowers.length;
+        int m=flowers[0].length;
+        int min=Integer.MAX_VALUE,max=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(max<flowers[i][j])
+                 max=flowers[i][j];
+            }
+        }
+        int max1=0;
+        for(int i=0;i<persons.length;i++)
+        {
+         if(max1<persons[i])
+           max1=persons[i];
+        }
+        int[] all=new int[max+max1];
+        for(int[] temp : flowers){
+            int s=temp[0];
+            int e=temp[1];
+            for(int i=s;i<=e;i++)
+            {
+                all[i]++;
+            }
+        }
+        int[] ans=new int[persons.length];
+        for(int i=0;i<persons.length;i++){
+            ans[i]=all[persons[i]];
+        }
+        return ans;
+    }
+}
