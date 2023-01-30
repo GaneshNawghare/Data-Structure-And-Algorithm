@@ -1,0 +1,13 @@
+class Solution {
+    public int sumTree(TreeNode root,int val) {
+       if(root==null)
+            return 0;
+        if(root.left==null && root.right==null)
+               return  val*10 + root.val;
+             val =  val*10 + root.val;
+        return  sumTree(root.left,val)+sumTree(root.right,val);
+    }
+    public int sumNumbers(TreeNode root) {
+        return sumTree(root,0);
+    }
+}
