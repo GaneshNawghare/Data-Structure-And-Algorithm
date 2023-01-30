@@ -1,0 +1,25 @@
+class Solution {
+    public int sumEvenGrandparent(TreeNode root) {
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        int sum=0;
+        while(q.size()>0){
+            TreeNode cur=q.remove();
+            if(cur.val%2==0){
+                if(cur.right!=null && cur.right.left!=null)
+                sum+=cur.right.left.val;
+                if(cur.right!=null && cur.right.right!=null)
+                sum+=cur.right.right.val;
+                if(cur.left!=null && cur.left.left!=null)
+                sum+=cur.left.left.val;
+                 if(cur.left!=null && cur.left.right!=null)
+                sum+=cur.left.right.val;
+            }
+            if(cur.left!=null)
+            q.add(cur.left);
+            if(cur.right!=null)
+            q.add(cur.right);
+        }
+        return sum;
+    }
+}
