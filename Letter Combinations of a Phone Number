@@ -1,0 +1,30 @@
+class Solution {
+     String[] words={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz","*","#"};
+     List<String> ans1=new ArrayList<>();
+     void  printKPCHelper(String str,String ans)
+	{
+		if(str.length()==0)
+		{
+			ans1.add(ans);
+			return;
+		}
+		char ch=str.charAt(0);
+		int digit=ch-'0';
+		String word=words[digit];
+		for(int i=0;i<word.length();i++)
+		{
+			printKPCHelper(str.substring(1),ans+word.charAt(i));
+		}
+	}
+     public List <String> letterCombinations(String digits)
+    {
+       // String str="";
+       // for(int i=0;i<N;i++){
+        //    str+=a[i];
+       // }
+       if(digits.length()==0)
+       return new ArrayList<>();
+         printKPCHelper(digits,"");
+         return ans1;
+    }
+}
