@@ -1,0 +1,15 @@
+class Solution {
+      public int kthAncestor(int n, int[] parent, int node, int k) {
+        int nv=node;
+		int ans=0;
+		 while(k>0){
+		 int pr=parent[nv];
+		 k--;
+		 nv=pr;
+		 if(nv<0)
+		  nv=0;
+		 ans = pr;
+		}
+		  return ans;
+    }
+}
