@@ -1,0 +1,42 @@
+class Solution {
+    public int minDays(int[] bloomDay, int m, int k) {
+        int st=min(bloomDay);
+        int en=(int)1e9;
+        int ans=0;
+        while(st<=en){
+            int mid=st+(en-st)/2;
+            if(check(bloomDay,mid,m,k)){
+                ans=mid;
+                en=mid-1;
+            }else{
+                st=mid+1;
+            }
+        }
+        return ans>0 ? ans : -1;
+    }
+    int min(int[] arr){
+        int mn=Integer.MAX_VALUE;
+        for(int i : arr){
+            if(i<mn){
+                mn=i;
+            }
+        }
+        return mn;
+    }
+    public boolean check(int[] arr,int mid,int m,int k){
+        int cnt=0;
+        int ans=0;
+        for(int i : arr){
+            if(i<=mid){
+                cnt++;
+                if(cnt==k){
+                    ans++;
+                    cnt=0;
+                }
+            }else{
+                    cnt=0;
+                }
+        }
+        return ans>=m;
+    }
+}
