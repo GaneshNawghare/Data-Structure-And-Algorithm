@@ -1,0 +1,43 @@
+class Node{
+	int val;
+	Node left;
+	Node right;
+	int wt;
+	Node(int val,int wt){
+		this.val=val;
+		this.wt=wt;
+	}
+}
+class Solution {
+    int max;
+    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
+        ArrayList<Node>[] graph=new ArrayList[n+1];
+		for(int i=0;i<n+1;i++){
+			graph[i]=new ArrayList<>();
+		}
+		Node root=new Node(headID,informTime[headID]);
+		graph[headID].add(root);
+		for(int i=0;i<n;i++){
+			if(manager[i]!=-1)
+			{
+				Node node=new Node(i,informTime[i]);
+		        graph[manager[i]].add(node);
+			}
+	   }
+		boolean[] vis=new boolean[n+1];
+		solve(graph,vis,headID,0+root.wt);
+		return max;
+    }
+    public void solve(ArrayList<Node>[] graph,boolean[] vis,int start,int depth){
+		vis[start]=true;
+		for(Node nbr:graph[start]){
+			if(vis[nbr.val]!=true){
+				vis[nbr.val]=true;
+				max=Math.max(max,depth);
+				//System.out.print(nbr.val+" ");
+				solve(graph,vis,nbr.val,depth+nbr.wt);
+			}
+		}
+		vis[start]=false;
+	}
+}
