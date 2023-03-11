@@ -1,0 +1,46 @@
+public class Main {
+    public static int minCoins(int coins[], int m, int V) {
+        int cnt=0;
+		while(V!=0){
+		    if(V>=2000){
+				cnt++;
+			  V-=2000;
+		   }else if(V>=500){
+			    cnt++;
+			   V-=500;
+		   }else if(V>=200){
+			    cnt++;
+			   V-=200;
+		   }else if(V>=100){
+			    cnt++;
+			   V-=100;
+		   }else if(V>=50){
+			    cnt++;
+			   V-=50;
+		   }else if(V>=20){
+			    cnt++;
+			   V-=20;
+		   }else if(V>=10){
+			    cnt++;
+			   V-=10;
+		   }else if(V>=5){
+			    cnt++;
+			   V-=5;
+		   }else if(V>=2){
+			    cnt++;
+			   V-=2;
+		   }else if(V>=1){
+			    cnt++;
+			   V-=1;
+		   }
+		}
+		return cnt;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int coins[] = { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 };
+        int m = coins.length;
+        int V = sc.nextInt();
+        System.out.println(minCoins(coins, m, V));
+    }
+}
