@@ -1,0 +1,45 @@
+class Solution {
+    static int dp[][];
+    public int makeArrayIncreasing(int[] arr1, int[] arr2) {
+    //co-ordinate compression
+    ArrayList<Integer> ar=new ArrayList<>();
+    dp=new int[4001][2001];
+    for(int i=0;i<dp.length;i++){
+        Arrays.fill(dp[i],-1);
+    }
+    HashMap<Integer,Integer> hm=new HashMap<>();
+    for(int i=0;i<arr1.length;i++)ar.add(arr1[i]);
+    for(int i=0;i<arr2.length;i++)ar.add(arr2[i]);
+    Collections.sort(ar);
+    int number=1;
+    for(int el:ar){
+        if(hm.containsKey(el))continue;
+        else{
+           hm.put(el,number++);
+      }
+    }
+    for(int i=0;i<arr1.length;i++) arr1[i]=hm.get(arr1[i]);
+    TreeSet<Integer> hs=new TreeSet<>();
+    for(int i=0;i<arr2.length;i++){
+       hs.add(hm.get(arr2[i]));
+    }
+    int ans=eval(arr1,0,hs,0);
+    return ans>=999999?-1:ans;
+}
+static int eval(int a[],int i,TreeSet<Integer> hs,int pr){
+    if(i>=a.length)return 0;
+    if(dp[pr][i]!=-1)return dp[pr][i];
+    if(pr<a[i]){
+       if(hs.higher(pr)!=null){
+          return dp[pr][i]=Math.min(1+eval(a,i+1,hs,hs.higher(pr)),eval(a,i+1,hs,a[i]));
+       }
+    else return dp[pr][i]=eval(a,i+1,hs,a[i]);
+    }
+    else{
+        if(hs.higher(pr)!=null){
+             return dp[pr][i]=1+eval(a,i+1,hs,hs.higher(pr));
+        }
+        else return dp[pr][i]=999999;
+    }
+  }
+}
