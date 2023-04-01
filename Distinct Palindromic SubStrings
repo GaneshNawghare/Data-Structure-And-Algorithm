@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class Main {
+    static void palindromeSubStrs(String s) {
+		ArrayList<String> ans=new ArrayList<>();
+        HashMap<String,Integer> hm=new HashMap<>();
+		for(int i=0;i<s.length();i++){
+			for(int j=i;j<s.length();j++){
+				int st=i;
+				int en=j;
+				String temp=s.substring(st,en+1);
+				int st1=0;
+				int end=temp.length()-1;
+				boolean flag=true;
+				while(st1<=end){
+					if(temp.charAt(st1)!=temp.charAt(end)){
+					    flag=false;
+					}
+					st1++;
+					end--;
+				}
+				if(flag==true && !hm.containsKey(temp)){
+					hm.put(temp,hm.getOrDefault(temp,0)+1);
+					ans.add(temp);
+				 }
+			   }
+			 }
+		 Collections.sort(ans);
+			for(int k=0;k<ans.size();k++){
+				String temp=ans.get(k);
+			    for(int j=0;j<temp.length();j++)
+					System.out.print(temp.charAt(j));
+				System.out.println();
+		}
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        palindromeSubStrs(s);
+    }
+}
