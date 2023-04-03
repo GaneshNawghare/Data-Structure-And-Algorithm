@@ -1,0 +1,26 @@
+ static int[] subtract(int[] n1, int[] n2) {
+    String no1="";
+	String no2="";
+	for(int i=0;i<n1.length;i++){
+	  no1+=n1[i];
+	}
+	for(int i=0;i<n2.length;i++){
+	  no2+=n2[i];
+	}
+	int number1=Integer.parseInt(no1);
+	int number2=Integer.parseInt(no2);
+	int ans=Math.abs(number1-number2);
+	ArrayList<Integer> res=new ArrayList<>();
+	while(ans!=0)
+	{
+		res.add(ans%10);
+		ans=ans/10;
+	}
+	Collections.reverse (res);
+	int n=res.size();
+	int[] result=new int[n];
+	for(int i=0;i<n;i++){
+		result[i]=res.get(i);
+	}
+	return result;
+  }
