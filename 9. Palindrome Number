@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+       String str=Integer.toString(x);
+       int st=0;
+       int ed=str.length()-1; 
+       while(st<=ed){
+           if(str.charAt(st)!=str.charAt(ed))
+             return false; 
+            st++;
+            ed--;
+       }
+      // System.out.print(str);
+       return true;
+    }
+}
