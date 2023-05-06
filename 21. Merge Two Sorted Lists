@@ -1,0 +1,35 @@
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        // create dummy node
+        ListNode dummy=new ListNode(0);
+        ListNode curr=dummy;
+         // use while loop for create new list sortedlist
+          while(list1!=null && list2!=null)
+          {
+              // smaller value put firstly in sorted list
+              if(list1.val < list2.val)
+              {
+                  curr.next=list1;
+                  list1=list1.next;
+              }
+              else
+              {
+                  curr.next=list2;
+                  list2=list2.next;
+              }
+              curr=curr.next;
+          }
+          // i will insert all remaining values in sorted list 
+          if(list1!=null)
+          {
+              curr.next=list1;
+              list1=list1.next;
+          }
+           if(list2!=null)
+          {
+              curr.next=list2;
+              list2=list2.next;
+          }
+          return dummy.next;
+    }
+}
