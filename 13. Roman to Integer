@@ -1,0 +1,17 @@
+class Solution {
+    public int romanToInt(String s) {
+           int[] value={1000,500,100,50,10,5,1};
+            String str="MDCLXVI";
+            int prev=0;
+            int sum=0;
+            for(int i=s.length()-1;i>=0;i--){
+                int current= value[str.indexOf(s.charAt(i))];
+                if(prev<=current) sum+=current;
+                else sum-=current;
+                prev=current;
+
+            }
+
+            return sum;
+    }
+}
