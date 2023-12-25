@@ -1,0 +1,44 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int noOfzero=0;
+        int ans[]=new int[m+n];
+        int st1=0;
+        int st2=0;
+        int i=0;
+        while(st1!=nums1.length && st2!=nums2.length){
+            if(nums1[st1]>=nums2[st2]){
+                if(nums2[st2]!=0){
+                 ans[i++]=nums2[st2++];
+                }else{
+                 st2++;
+                }
+               
+            }else{
+                if(nums1[st1]!=0){
+                 ans[i++]=nums1[st1++];
+                }else{
+                    st1++;
+                }
+            }
+        }
+        while(st1!=nums1.length){
+            if(nums1[st1]!=0){
+                ans[i++]=nums1[st1++];
+            }else{
+                st1++;
+            }
+        }
+        while(st2!=nums2.length){
+            if(nums2[st2]!=0){
+                ans[i++]=nums2[st2++];
+            }else{
+                st2++;
+            }
+        }
+        for(int j=0;j<ans.length;j++){
+            System.out.print(ans[j]+" ");
+            nums1[j]=ans[j];
+        }
+        Arrays.sort(nums1);
+    }
+}
