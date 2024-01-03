@@ -166,31 +166,30 @@ This document provides instructions for using Docker Compose to set up container
 
 Create a file named docker-compose.yml in your project's root directory with the following content:
 ```bash
-version: '3'
+version: '3.9'
 services:
-  mongodb:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=adminpassword
-
   backend:
+    # container_name: nodejs_api_dev
+    image: socket-server-backend
     build:
       context: .
-      dockerfile: Dockerfile   # Replace with the path to your Node.js Dockerfile
+      dockerfile: ./Dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3001
     depends_on:
       - mongodb
-    environment:
-      - MONGODB_URI=mongodb://admin:adminpassword@mongodb:27017/yourdbname   # Change yourdbname to your actual database name
+    restart: unless-stopped
 
-volumes:
-  mongodb_data:
+  mongodb:
+    image : mongo:latest
+    # container_name: mongodb
+    volumes:
+      - ./database:/data/db
+    ports:
+      - 27018:27017
+    environment:
+      - MONGO_URL
+    restart: always
 ```
 
 ### 2. Adjust Configuration
